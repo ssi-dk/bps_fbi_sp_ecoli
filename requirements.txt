@@ -1,0 +1,6 @@
+openpyxl
+pandas
+envyaml
+pandas
+requests
+python-dotenv
