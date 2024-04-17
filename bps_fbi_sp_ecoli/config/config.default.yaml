@@ -1,0 +1,30 @@
+# When accessing this in the code you'll work with it as a dict.
+# ENV variables will be replaced with their values. This is done with the envyaml package that is in the code template `load_config`.
+# By convention all variables for the project should have the PROJECTNAME_* prefix.
+# e.g
+# name: ${PROJECTNAME_NAME}
+example:
+    input:
+        name: ${BPS_FBI_SP_ECOLI_USER_INPUT_NAME}
+        alternative_name: Lee
+
+run_bifrostecolipostkma:
+    kma_path: ${BPS_FBI_SP_ECOLI_KMA_PATH}
+    db_path: ${BPS_FBI_SP_ECOLI_DB_PATH}
+    input:
+        dir: ${BPS_FBI_SP_ECOLI_INPUT_DIR}
+        sample_sheet: ${BPS_FBI_SP_ECOLI_SAMPLE_SHEET}
+    output:
+        dir: ${BPS_FBI_SP_ECOLI_OUTPUT_DIR}
+        command_file: ${BPS_FBI_SP_ECOLI_OUTPUT_DIR}/${BPS_FBI_SP_ECOLI_COMMAND_FILE}
+        overwrite: True
+        to_stdout: False
+        
+run_qcecolisummary:
+    input:
+        dir: ${BPS_FBI_SP_ECOLI_OUTPUT_DIR}
+    output:
+        dir: ${BPS_FBI_SP_ECOLI_OUTPUT_DIR}
+        command_file: ${BPS_FBI_SP_ECOLI_OUTPUT_DIR}/${BPS_FBI_SP_ECOLI_COMMAND_FILE}
+        overwrite: True
+        to_stdout: False

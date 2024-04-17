@@ -1,0 +1,10 @@
+website:
+  sidebar:
+    contents:
+      - index.ipynb
+      - 00_core.ipynb
+      - 01_hello_world.ipynb
+      - 02_helpers.ipynb
+      - 03_run_bifrostecolipostkma.ipynb
+      - 04_run_qcecolisummary.ipynb
+      - 05_qc_pipeline.ipynb
