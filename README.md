@@ -27,9 +27,10 @@ conda install bioconda::kma
 ### Installation with conda
 
 ``` sh
-conda create /.venv python=3.11
+conda create -p ./.venv python=3.11
 conda install kalilamali::bps_fbi_sp_ecoli
-pip install requirements.txt
+wget https://raw.githubusercontent.com/ssi-dk/bps_fbi_sp_ecoli/main/requirements.txt
+pip install -r requirements.txt
 ```
 
 ## How to use
