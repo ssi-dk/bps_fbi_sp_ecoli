@@ -22,8 +22,9 @@ import os
 
 @call_parse
 def cli(
-    config_file1=None,  # Config file to check raw data vs demux
-    config_file2=None,  # Config file to check demux vs qc
+    config_file1=None,  # Config file to type
+    config_file2=None,  # Config file to process results
+    config_file3=None,  # Config file to summarize
 ) -> None:
     """
     Takes associated config files and runs full QC pipeline which is check for runs not demuxed, demultiplexes them, then runs QC on them
@@ -31,5 +32,5 @@ def cli(
     run_ecolityping.cli(
         config_file=config_file1
     )  # Run samples against ecoligenesdb using kma
-    run_postecolityping.cli(config_file=config_file1)  # Process kma results
-    run_qcecolisummary.cli(config_file=config_file2)  # Summarize results
+    run_postecolityping.cli(config_file=config_file2)  # Process kma results
+    run_qcecolisummary.cli(config_file=config_file3)  # Summarize results
