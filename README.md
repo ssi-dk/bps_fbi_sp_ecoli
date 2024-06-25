@@ -10,27 +10,50 @@ MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.or
 [![Anaconda-Server
 Badge](https://anaconda.org/kalilamali/bps_fbi_sp_ecoli/badges/version.svg)](https://anaconda.org/kalilamali/bps_fbi_sp_ecoli)
 
+## Quick start
+
+``` bash
+# Type
+fbi_run_ecolityping -h
+# Process
+fbi_run_postecolityping -h
+# Summarize
+! fbi_run_qcecolisummary -h
+```
+
 ## Installation
+
+### Pip
 
 Note that this program requires KMA, which is not available on pip. you
 would need to install it via [conda](https://anaconda.org/bioconda/kma)
 or [github](https://bitbucket.org/genomicepidemiology/kma/src/master/).
 
-### Installation with pip
-
-``` sh
+``` bash
 conda create /.venv python=3.11
 pip install bps_fbi_sp_ecoli
 conda install bioconda::kma
 ```
 
-### Installation with conda
+### Conda
 
-``` sh
-conda create -p ./.venv python=3.11
+``` bash
+conda create /.venv python=3.11
 conda install kalilamali::bps_fbi_sp_ecoli
-wget https://raw.githubusercontent.com/ssi-dk/bps_fbi_sp_ecoli/main/requirements.txt
-pip install -r requirements.txt
+pip install openpyxl pandas envyaml pandas requests python-dotenv
+```
+
+## Source
+
+``` bash
+# Clone this repo
+git clone https://github.com/ssi-dk/https://github.com/ssi-dk/bps_fbi_sp_ecoli.git
+# Create an environment with the required tools with conda
+conda create --name ecoli_pipeline kma python=3.11
+# Activate the environment
+conda activate ecoli pipeline
+# Install pip requirements
+pip install -r requirements.tx
 ```
 
 ## How to use
@@ -38,17 +61,96 @@ pip install -r requirements.txt
 Determines the serotype and virulence in ecoli through kmer alignment
 
 ``` python
-! FBI_run_bifrostecolipostkma -h
+! fbi_run_ecolityping -h
 ```
 
-``` python
-#! FBI_run_bifrostecolipostkma --input input/231116_CUSTOM_SSIFBI_ECOLI --sample_sheet sample_sheet.xlsx --output output --db_path input/db/ecoligenes --execute
-```
+    usage: fbi_run_ecolityping [-h] [--input INPUT] [--sample_sheet SAMPLE_SHEET]
+                               [--output OUTPUT] [--db_path DB_PATH] [--db_update]
+                               [--kma_path KMA_PATH] [--command_file COMMAND_FILE]
+                               [--execute] [--to_stdout] [--overwrite]
+                               [--config_file CONFIG_FILE]
+
+    This program takes as input a folder containing fastq.gz files and a
+    sample_sheet containing SampleID Organism SupplyingLab ecoli1 Ecoli FBI and
+    allows you to run ecolityping.py on all Ecoli samples.
+
+    options:
+      -h, --help                   show this help message and exit
+      --input INPUT                Path to input folder that contains the .fastq.gz
+                                   files
+      --sample_sheet SAMPLE_SHEET  Name of the sample_sheet file
+      --output OUTPUT              Path to the output directory
+      --db_path DB_PATH            Path to db folder that contains the indexed
+                                   database files e.g., file.comp.b, file.fsa,
+                                   file.index.db, file.lenght.b, file.name,
+                                   file.seq.b
+      --db_update                  Option to build/update the database (default:
+                                   False)
+      --kma_path KMA_PATH          Path to kma program
+      --command_file COMMAND_FILE  Path to file to write commands to
+      --execute                    Run commands in command file (default: False)
+      --to_stdout                  If true, will write to stdout instead of file,
+                                   mutually exclusive with output_file (default:
+                                   False)
+      --overwrite                  If true, will overwrite output_file if it exists
+                                   (default: False)
+      --config_file CONFIG_FILE    Config file to overwrite default settings, arg
+                                   parse values will override config file values,
 
 ``` python
-! FBI_run_qcecolisummary -h
+! fbi_run_postecolityping -h
 ```
 
+    usage: fbi_run_postecolityping [-h] [--input INPUT]
+                                   [--sample_sheet SAMPLE_SHEET] [--output OUTPUT]
+                                   [--command_file COMMAND_FILE] [--execute]
+                                   [--to_stdout] [--overwrite]
+                                   [--config_file CONFIG_FILE]
+
+    This program takes as input a folder containing .tsv files and allows you to run
+    postecolityping.py on all Ecoli samples.
+
+    options:
+      -h, --help                   show this help message and exit
+      --input INPUT                Path to input folder that contains the results of
+                                   kma matching against the ecoligenes db (the
+                                   folder)
+      --sample_sheet SAMPLE_SHEET  Name of the sample_sheet file
+      --output OUTPUT              Path to the output directory
+      --command_file COMMAND_FILE  Path to file to write commands to
+      --execute                    Run commands in command file (default: False)
+      --to_stdout                  If true, will write to stdout instead of file,
+                                   mutually exclusive with output_file (default:
+                                   False)
+      --overwrite                  If true, will overwrite output_file if it exists
+                                   (default: False)
+      --config_file CONFIG_FILE    Config file to overwrite default settings, arg
+                                   parse values will override config file values,
+
 ``` python
-#! FBI_run_qcecolisummary --input output/231116_CUSTOM_SSIFBI_ECOLI --output output --execute
+! fbi_run_qcecolisummary -h
 ```
+
+    usage: fbi_run_qcecolisummary [-h] [--input INPUT] [--output OUTPUT]
+                                  [--command_file COMMAND_FILE] [--execute]
+                                  [--to_stdout] [--overwrite]
+                                  [--config_file CONFIG_FILE]
+
+    This program takes as input a folder containing .tsv files and allows you to run
+    qcecolisummary.py on all Ecoli samples.
+
+    options:
+      -h, --help                   show this help message and exit
+      --input INPUT                Path to input folder that contains the results of
+                                   kma matching against the ecoligenes db (the
+                                   folder)
+      --output OUTPUT              Path to the output directory
+      --command_file COMMAND_FILE  Path to file to write commands to
+      --execute                    Run commands in command file (default: False)
+      --to_stdout                  If true, will write to stdout instead of file,
+                                   mutually exclusive with output_file (default:
+                                   False)
+      --overwrite                  If true, will overwrite output_file if it exists
+                                   (default: False)
+      --config_file CONFIG_FILE    Config file to overwrite default settings, arg
+                                   parse values will override config file values,

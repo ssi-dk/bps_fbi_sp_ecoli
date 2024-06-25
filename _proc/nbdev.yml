@@ -1,9 +1,0 @@
-project:
-  output-dir: _docs
-
-website:
-  title: "bps_fbi_sp_ecoli"
-  site-url: "https://ssi-dk.github.io/bps_fbi_sp_ecoli"
-  description: "Species specific scripts for ecoli"
-  repo-branch: main
-  repo-url: "https://github.com/ssi-dk/bps_fbi_sp_ecoli"
